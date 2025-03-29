@@ -1,0 +1,1078 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Gestión de Depósitos, Válvulas e Impulsores",
+    "version": "1.0"
+  },
+  "paths": {
+    "/depositos": {
+      "get": {
+        "summary": "Obtiene todos los depósitos",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Listado de depósitos obtenido exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deposito"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea uno o varios depósitos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "depositos",
+            "description": "Datos de los depósitos a crear",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DepositoInput"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Depósitos creados exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "nombre": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/depositos/{deposito_id}": {
+      "get": {
+        "summary": "Obtiene un depósito por su ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deposito_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del depósito a obtener"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Depósito obtenido exitosamente",
+            "schema": {
+              "$ref": "#/definitions/Deposito"
+            }
+          },
+          "404": {
+            "description": "Depósito no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un depósito",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deposito_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del depósito a actualizar"
+          },
+          {
+            "in": "body",
+            "name": "deposito",
+            "description": "Datos del depósito a actualizar",
+            "schema": {
+              "$ref": "#/definitions/DepositoInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Depósito actualizado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Depósito no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Borra un depósito",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deposito_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del depósito a borrar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Depósito borrado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Depósito no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/depositos/{deposito_id}/activar": {
+      "put": {
+        "summary": "Activa un depósito",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "deposito_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del depósito a activar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Depósito activado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Depósito no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/depositos/activos":{
+      "get":{
+        "summary": "Obtiene los depositos activos",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Depositos activos obtenidos con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Deposito"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/depositos/inactivos":{
+      "get":{
+        "summary": "Obtiene los depositos inactivos",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Depositos inactivos obtenidos con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Deposito"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/impulsores": {
+      "get": {
+        "summary": "Obtiene todos los impulsores",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Listado de impulsores obtenido exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Impulsor"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea uno o varios impulsores",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "impulsores",
+            "description": "Datos de los impulsores a crear",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ImpulsorInput"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Impulsores creados exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "nombre": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/impulsores/{impulsor_id}": {
+      "get": {
+        "summary": "Obtiene un impulsor por su ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "impulsor_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del impulsor a obtener"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Impulsor obtenido exitosamente",
+            "schema": {
+              "$ref": "#/definitions/Impulsor"
+            }
+          },
+          "404": {
+            "description": "Impulsor no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un impulsor",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "impulsor_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del impulsor a actualizar"
+          },
+          {
+            "in": "body",
+            "name": "impulsor",
+            "description": "Datos del impulsor a actualizar",
+            "schema": {
+              "$ref": "#/definitions/ImpulsorInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Impulsor actualizado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Impulsor no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Borra un impulsor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "impulsor_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del impulsor a borrar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Impulsor borrado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Impulsor no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/impulsores/{impulsor_id}/activar": {
+      "put": {
+        "summary": "Activa un impulsor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "impulsor_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID del impulsor a activar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Impulsor activado exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Impulsor no encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/impulsores/activos":{
+      "get":{
+        "summary": "Obtiene los impulsores activos",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Impulsores activos obtenidos con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Impulsor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/impulsores/inactivos":{
+      "get":{
+        "summary": "Obtiene los impulsores inactivos",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Impulsores inactivos obtenidos con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Impulsor"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/valvulas": {
+      "get": {
+        "summary": "Obtiene todas las válvulas",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Listado de válvulas obtenido exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Valvula"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea una o varias válvulas",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "valvulas",
+            "description": "Datos de las válvulas a crear",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValvulaInput"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Válvulas creadas exitosamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "nombre": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/valvulas/{valvula_id}": {
+      "get": {
+        "summary": "Obtiene una válvula por su ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "valvula_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID de la válvula a obtener"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Válvula obtenida exitosamente",
+            "schema": {
+              "$ref": "#/definitions/Valvula"
+            }
+          },
+          "404": {
+            "description": "Válvula no encontrada",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza una válvula",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "valvula_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID de la válvula a actualizar"
+          },
+          {
+            "in": "body",
+            "name": "valvula",
+            "description": "Datos de la válvula a actualizar",
+            "schema": {
+              "$ref": "#/definitions/ValvulaInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Válvula actualizada exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error en la solicitud (datos incorrectos)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Válvula no encontrada",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Borra una válvula",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "valvula_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID de la válvula a borrar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Válvula borrada exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Válvula no encontrada",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/valvulas/{valvula_id}/activar": {
+      "put": {
+        "summary": "Activa una válvula",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "valvula_id",
+            "type": "integer",
+            "required": true,
+            "description": "ID de la válvula a activar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Válvula activada exitosamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Válvula no encontrada",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/valvulas/activas":{
+      "get":{
+        "summary": "Obtiene las valvulas activas",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Valvulas activas obtenidas con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Valvula"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/valvulas/inactivas":{
+      "get":{
+        "summary": "Obtiene las valvulas inactivas",
+        "produces":[
+          "application/json"
+        ],
+        "responses":{
+          "200":{
+            "description": "Valvulas inactivos obtenidos con exito",
+            "schema":{
+              "type": "array",
+              "items":{
+                "$ref":"#/definitions/Valvula"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Deposito": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "capacidad": {
+          "type": "number"
+        },
+        "contenido": {
+          "type": "number"
+        },
+        "unidades": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_creacion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DepositoInput": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "capacidad": {
+          "type": "number"
+        },
+        "contenido": {
+          "type": "number"
+        },
+        "unidades": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_creacion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Impulsor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "caudal": {
+          "type": "number"
+        },
+        "potencia": {
+          "type": "number"
+        },
+        "deposito_id": {
+          "type": "integer"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_instalacion": {
+          "type": "string",
+          "format": "date"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ImpulsorInput": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "caudal": {
+          "type": "number"
+        },
+        "potencia": {
+          "type": "number"
+        },
+        "deposito_id": {
+          "type": "integer"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_instalacion": {
+          "type": "string",
+          "format": "date"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Valvula": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "diametro": {
+          "type": "number"
+        },
+        "deposito_id": {
+          "type": "integer"
+        },
+        "impulsor_id": {
+          "type": "integer"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_instalacion": {
+          "type": "string",
+          "format": "date"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ValvulaInput": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string"
+        },
+        "diametro": {
+          "type": "number"
+        },
+        "deposito_id": {
+          "type": "integer"
+        },
+        "impulsor_id": {
+          "type": "integer"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "fecha_instalacion": {
+          "type": "string",
+          "format": "date"
+        },
+        "activo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "mensaje": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
