@@ -4,10 +4,27 @@
     "title": "API de Gestión de Depósitos, Válvulas e Impulsores",
     "version": "1.0"
   },
+"tags": [
+    {
+      "name": "Depositos",
+      "description": "Operaciones relacionadas con los depósitos"
+    },
+    {
+      "name": "Valvulas",
+      "description": "Operaciones relacionadas con las válvulas"
+    },
+    {
+      "name": "Impulsores",
+      "description": "Operaciones relacionadas con los impulsores"
+    }
+  ],
   "paths": {
     "/depositos": {
       "get": {
         "summary": "Obtiene todos los depósitos",
+        "tags": [
+          "Depositos"
+        ],
         "produces": [
           "application/json"
         ],
@@ -31,6 +48,9 @@
       },
       "post": {
         "summary": "Crea uno o varios depósitos",
+        "tags": [
+          "Depositos"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -86,6 +106,9 @@
     "/depositos/{deposito_id}": {
       "get": {
         "summary": "Obtiene un depósito por su ID",
+        "tags": [
+          "Depositos"
+        ],
         "produces": [
           "application/json"
         ],
@@ -121,6 +144,9 @@
       },
       "put": {
         "summary": "Actualiza un depósito",
+        "tags": [
+          "Depositos"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -178,6 +204,9 @@
       },
       "delete": {
         "summary": "Borra un depósito",
+        "tags": [
+          "Depositos"
+        ],
         "produces": [
           "application/json"
         ],
@@ -220,6 +249,9 @@
     "/depositos/{deposito_id}/activar": {
       "put": {
         "summary": "Activa un depósito",
+        "tags": [
+          "Depositos"
+        ],
         "produces": [
           "application/json"
         ],
@@ -262,6 +294,9 @@
     "/depositos/activos":{
       "get":{
         "summary": "Obtiene los depositos activos",
+        "tags": [
+          "Depositos"
+        ],
         "produces":[
           "application/json"
         ],
@@ -281,6 +316,9 @@
     "/depositos/inactivos":{
       "get":{
         "summary": "Obtiene los depositos inactivos",
+        "tags": [
+          "Depositos"
+        ],
         "produces":[
           "application/json"
         ],
@@ -300,6 +338,9 @@
     "/impulsores": {
       "get": {
         "summary": "Obtiene todos los impulsores",
+        "tags": [
+          "Impulsores"
+        ],
         "produces": [
           "application/json"
         ],
@@ -323,6 +364,9 @@
       },
       "post": {
         "summary": "Crea uno o varios impulsores",
+        "tags": [
+          "Impulsores"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -378,6 +422,9 @@
     "/impulsores/{impulsor_id}": {
       "get": {
         "summary": "Obtiene un impulsor por su ID",
+        "tags": [
+          "Impulsores"
+        ],
         "produces": [
           "application/json"
         ],
@@ -413,6 +460,9 @@
       },
       "put": {
         "summary": "Actualiza un impulsor",
+        "tags": [
+          "Impulsores"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -470,6 +520,9 @@
       },
       "delete": {
         "summary": "Borra un impulsor",
+        "tags": [
+          "Impulsores"
+        ],
         "produces": [
           "application/json"
         ],
@@ -512,6 +565,9 @@
     "/impulsores/{impulsor_id}/activar": {
       "put": {
         "summary": "Activa un impulsor",
+        "tags": [
+          "Impulsores"
+        ],
         "produces": [
           "application/json"
         ],
@@ -554,6 +610,9 @@
     "/impulsores/activos":{
       "get":{
         "summary": "Obtiene los impulsores activos",
+        "tags": [
+          "Impulsores"
+        ],
         "produces":[
           "application/json"
         ],
@@ -573,6 +632,9 @@
     "/impulsores/inactivos":{
       "get":{
         "summary": "Obtiene los impulsores inactivos",
+        "tags": [
+          "Impulsores"
+        ],
         "produces":[
           "application/json"
         ],
@@ -592,6 +654,9 @@
     "/valvulas": {
       "get": {
         "summary": "Obtiene todas las válvulas",
+        "tags": [
+          "Valvulas"
+        ],
         "produces": [
           "application/json"
         ],
@@ -615,6 +680,9 @@
       },
       "post": {
         "summary": "Crea una o varias válvulas",
+        "tags": [
+          "Valvulas"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -670,6 +738,9 @@
     "/valvulas/{valvula_id}": {
       "get": {
         "summary": "Obtiene una válvula por su ID",
+        "tags": [
+          "Valvulas"
+        ],
         "produces": [
           "application/json"
         ],
@@ -705,6 +776,9 @@
       },
       "put": {
         "summary": "Actualiza una válvula",
+        "tags": [
+          "Valvulas"
+        ],
         "consumes": [
           "application/json"
         ],
@@ -762,6 +836,9 @@
       },
       "delete": {
         "summary": "Borra una válvula",
+        "tags": [
+          "Valvulas"
+        ],
         "produces": [
           "application/json"
         ],
@@ -804,6 +881,9 @@
     "/valvulas/{valvula_id}/activar": {
       "put": {
         "summary": "Activa una válvula",
+        "tags": [
+          "Valvulas"
+        ],
         "produces": [
           "application/json"
         ],
@@ -846,6 +926,9 @@
     "/valvulas/activas":{
       "get":{
         "summary": "Obtiene las valvulas activas",
+        "tags": [
+          "Valvulas"
+        ],
         "produces":[
           "application/json"
         ],
@@ -865,6 +948,9 @@
     "/valvulas/inactivas":{
       "get":{
         "summary": "Obtiene las valvulas inactivas",
+        "tags": [
+          "Valvulas"
+        ],
         "produces":[
           "application/json"
         ],
